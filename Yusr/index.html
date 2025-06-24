@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>يسر - البوابة الحكومية السودانية الموحدة</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo:400,700&display=swap">
+    <style>
+        /* ألوان حيوية وجذابة للمنصة */
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #f6f9f6 0%, #e3f0ff 60%, #f9f6ff 100%);
+            color: #222;
+            direction: rtl;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(90deg, #00b894 60%, #00bcd4 100%);
+            color: #fff;
+            padding: 0.7rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 18px rgba(0,188,212,0.13);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+        .logo img {
+            height: 54px;
+            width: 54px;
+            border-radius: 50%;
+            background: #fff;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0,188,212,0.13);
+            border: 3px solid #00b894;
+        }
+        .logo span {
+            font-size: 2.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0,188,212,0.13);
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.09rem;
+            padding: 0.35rem 1.1rem;
+            border-radius: 10px;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            position: relative;
+        }
+        nav a:hover, nav a.active {
+            background: linear-gradient(90deg, #fff 60%, #e3f0ff 100%);
+            color: #00b894;
+            box-shadow: 0 2px 8px rgba(0,188,212,0.13);
+        }
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e3f0ff 60%, #ffeaa7 100%);
+            color: #00b894;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.15rem;
+            cursor: pointer;
+            border: 2px solid #00b894;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(0,188,212,0.13);
+        }
+        .user-avatar:hover {
+            background: linear-gradient(135deg, #ffeaa7 60%, #e3f0ff 100%);
+            box-shadow: 0 4px 16px rgba(0,188,212,0.18);
+        }
+        .lang-switch {
+            background: linear-gradient(90deg, #fff 60%, #e3f0ff 100%);
+            color: #00b894;
+            border: 1.5px solid #00b894;
+            border-radius: 10px;
+            padding: 0.25rem 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            transition: background 0.2s, color 0.2s, box-shadow 0.18s;
+            box-shadow: 0 1px 4px rgba(0,188,212,0.09);
+        }
+        .lang-switch:hover {
+            background: #ffeaa7;
+            color: #00b894;
+            box-shadow: 0 2px 8px rgba(0,188,212,0.13);
+        }
+        .container {
+            max-width: 1160px;
+            margin: 2.5rem auto;
+            padding: 1.5rem 1.2rem;
+            background: linear-gradient(135deg, #fff 80%, #e3f0ff 100%);
+            border-radius: 28px;
+            box-shadow: 0 8px 32px rgba(0,188,212,0.13), 0 1.5px 8px rgba(0,0,0,0.03);
+        }
+        .landing-main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .welcome-section {
+            flex: 1 1 370px;
+        }
+        .welcome-section h1 {
+            color: #00754a;
+            font-size: 2.4rem;
+            margin-bottom: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .welcome-section p {
+            font-size: 1.13rem;
+            margin-bottom: 1.7rem;
+            color: #444;
+        }
+        .services-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .services-icons img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: #e6f5ed;
+            padding: 10px;
+            border: 1.5px solid #c4e7d6;
+        }
+        .auth-section {
+            flex: 1 1 340px;
+            background: #f6f9f6;
+            border-radius: 18px;
+            padding: 2.2rem 1.7rem 1.5rem 1.7rem;
+            margin-bottom: 1.5rem;
+        }
+        .auth-section h2 {
+            color: #00b894;
+            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .auth-section label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+            color: #00b894;
+            font-size: 1.07rem;
+        }
+        .auth-section input, .auth-section textarea {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1.1rem;
+            border: 1.5px solid #b2bec3;
+            border-radius: 10px;
+            font-size: 1.08rem;
+            background: #f9fdf9;
+            transition: border 0.18s, box-shadow 0.18s;
+            box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+        }
+        .auth-section input:focus, .auth-section textarea:focus {
+            border: 1.5px solid #00b894;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(0,188,212,0.13);
+        }
+        .auth-section button, .container button, .quick-link, .service-card {
+            font-family: inherit;
+            font-size: 1.09rem;
+            border-radius: 10px;
+            border: none;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            box-shadow: 0 1px 4px rgba(0,188,212,0.09);
+        }
+        .auth-section button, .container button {
+            width: 100%;
+            background: linear-gradient(90deg, #00b894 70%, #00bcd4 100%);
+            color: #fff;
+            padding: 0.85rem 0;
+            font-weight: bold;
+            margin-bottom: 0.9rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+        .auth-section button:hover, .container button:hover {
+            background: linear-gradient(90deg, #00bcd4 70%, #00b894 100%);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0,188,212,0.18);
+        }
+        .quick-link {
+            background: linear-gradient(90deg, #ffeaa7 60%, #e3f0ff 100%);
+            border-radius: 12px;
+            padding: 1.1rem 1.7rem;
+            color: #00b894;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            min-width: 130px;
+            border: 1.5px solid #e3f0ff;
+            font-size: 1.08rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+        }
+        .quick-link:hover {
+            background: linear-gradient(90deg, #e3f0ff 60%, #ffeaa7 100%);
+            color: #00b894;
+            box-shadow: 0 2px 8px rgba(0,188,212,0.13);
+        }
+        .service-card {
+            background: linear-gradient(135deg, #f6f9f6 80%, #e3f0ff 100%);
+            border-radius: 14px;
+            padding: 1.1rem;
+            min-width: 190px;
+            text-align: center;
+            cursor: pointer;
+            border: 1.5px solid #e3f0ff;
+            color: #00b894;
+            font-weight: bold;
+            font-size: 1.07rem;
+            margin-bottom: 0.7rem;
+            box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+        }
+        .service-card:hover {
+            background: linear-gradient(135deg, #ffeaa7 80%, #e3f0ff 100%);
+            border: 1.5px solid #00b894;
+            color: #00b894;
+            box-shadow: 0 2px 8px rgba(0,188,212,0.13);
+        }
+        .news-section {
+            background: linear-gradient(135deg, #e3f0ff 80%, #ffeaa7 100%);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,188,212,0.07);
+            border: 1.5px solid #e3f0ff;
+            margin-bottom: 1.5rem;
+        }
+        .news-section h3 {
+            color: #00b894;
+            font-size: 1.18rem;
+            margin-bottom: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .news-list {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.1rem;
+            border: 1.5px solid #e3f0ff;
+            box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+        }
+        .news-item {
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+            color: #00b894;
+        }
+        .breadcrumbs {
+            font-size: 1.01rem;
+            color: #888;
+            margin-bottom: 1.1rem;
+            background: linear-gradient(90deg, #e3f0ff 60%, #fff 100%);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+        }
+        /* زر تسجيل الخروج */
+        #logoutBtn {
+            background: linear-gradient(90deg, #e17055 70%, #d63031 100%);
+            color: #fff;
+            margin-top: 1.3rem;
+            border-radius: 10px;
+            font-size: 1.08rem;
+            font-weight: bold;
+            border: none;
+            padding: 0.8rem 0;
+            transition: background 0.18s, box-shadow 0.18s;
+            box-shadow: 0 1px 4px rgba(225,112,85,0.13);
+        }
+        #logoutBtn:hover {
+            background: linear-gradient(90deg, #d63031 70%, #e17055 100%);
+            box-shadow: 0 2px 8px rgba(225,112,85,0.18);
+        }
+        .auth-links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.01rem;
+        }
+        .auth-links a {
+            color: #00b894;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 2px 8px;
+            transition: background 0.15s, color 0.15s;
+        }
+        .auth-links a:hover {
+            background: #ffeaa7;
+            color: #00b894;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .landing-main {
+                flex-direction: column;
+                gap: 2.2rem;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0.5rem;
+            }
+            header {
+                flex-direction: column;
+                gap: 0.7rem;
+                padding: 0.7rem 0.5rem;
+            }
+            nav {
+                gap: 1rem;
+            }
+            .services-grid {
+                flex-direction: column;
+            }
+            .quick-links {
+                flex-direction: column;
+            }
+            .auth-section {
+                padding: 1.2rem 0.7rem 1rem 0.7rem;
+            }
+        }
+        /* Hamburger menu for mobile */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 4px;
+            background: #fff;
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        @media (max-width: 700px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background: #00754a;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                z-index: 200;
+            }
+            nav.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+        /* تحسين زر إظهار/إخفاء كلمة المرور */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 1.1rem;
+        }
+        .password-wrapper input[type="password"],
+        .password-wrapper input[type="text"] {
+            width: 100%;
+            border: 1.5px solid #c4e7d6;
+            border-radius: 8px;
+            font-size: 1.08rem;
+            background: #f9fdf9;
+            transition: border 0.18s, box-shadow 0.18s;
+            padding: 0.7rem 2.5rem 0.7rem 0.7rem; /* right for RTL */
+            box-sizing: border-box;
+            margin-bottom: 0; /* إزالة أي فراغ إضافي */
+        }
+        .password-wrapper input:focus {
+            border: 1.5px solid #00754a;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(0,117,74,0.09);
+        }
+        .toggle-eye-btn {
+            position: absolute;
+            right: 8px; /* بدل left:8px لأن الصفحة RTL */
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .toggle-eye-btn:focus {
+            outline: none;
+        }
+        .toggle-eye-btn span {
+            font-size: 1.3rem;
+            color: #888;
+            user-select: none;
+        }
+        /* إزالة أي هوامش إضافية من زر الدخول */
+        #loginForm > button[type="submit"] {
+            margin-bottom: 0.9rem;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo">
+            <img src="res/الشعار الموحد.png" alt="شعار يسر" style="height:54px;width:54px;border-radius:50%;background:#fff;padding:5px;box-shadow:0 2px 10px rgba(0,188,212,0.13);border:3px solid #00b894;">
+            <span style="font-size:1.5rem;font-weight:bold;">يسر</span>
+        </div>
+        <div class="hamburger" id="hamburgerBtn" tabindex="0" aria-label="قائمة التنقل">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mainNav">
+            <a href="#" id="homeNav">الرئيسية</a>
+            <a href="#" id="servicesNav">الخدمات</a>
+            <a href="#" id="myAppsNav">طلباتي</a>
+            <a href="#" id="helpNav">المساعدة</a>
+        </nav>
+        <div class="user-menu">
+            <button class="lang-switch" id="langSwitch">EN</button>
+            <div class="user-avatar" id="userAvatar" title="ملفي الشخصي">دخـول</div>
+        </div>
+    </header>
+
+    <!-- Landing / Auth Page -->
+    <div class="container" id="landingPage">
+        <div class="landing-main">
+            <div class="welcome-section">
+                <h1>بوابتك الموحدة للخدمات الحكومية في السودان</h1>
+                <p>
+                    منصة <b>يسر</b> تجمع لك كل الخدمات الحكومية السودانية في مكان واحد، لتسهيل وصولك للخدمات الرقمية بأمان وسرعة وجودة عالية.<br>
+                    للمواطنين، المقيمين، الزوار، والشركات.
+                </p>
+                <div class="services-icons">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="الهوية" title="الهوية">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" alt="الجوازات" title="الجوازات">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="الضرائب" title="الضرائب">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062633.png" alt="المرور" title="المرور">
+                </div>
+            </div>
+            <!-- صفحة تسجيل الدخول بشكل جديد متناسق مع ألوان المنصة -->
+            <div class="auth-section" id="loginSection" style="background:linear-gradient(135deg,#e3f0ff 70%,#ffeaa7 100%);box-shadow:0 4px 24px rgba(0,188,212,0.13);border-radius:18px;max-width:370px;margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                <div style="width:100%;display:flex;justify-content:center;align-items:center;">
+                    <div style="width:88px;height:88px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:50%;box-shadow:0 2px 16px rgba(0,188,212,0.13);border:4px solid #00b894;margin-bottom:1.2rem;">
+                        <img src="res/الشعار الموحد.png" alt="شعار يسر" style="width:80px;height:80px;border-radius:50%;object-fit:cover;">
+                    </div>
+                </div>
+                <h2 style="color:#00b894;font-size:2rem;font-weight:bold;margin-bottom:0.7rem;letter-spacing:1px;text-align:center;width:100%;">تسجيل الدخول إلى يسر</h2>
+                <!-- نموذج تسجيل الدخول -->
+                <form id="loginForm" autocomplete="off" style="width:100%;max-width:320px;">
+                    <label for="username">رقم الهوية أو البريد الإلكتروني</label>
+                    <input type="text" id="username" required placeholder="رقم الهوية أو البريد الإلكتروني" style="margin-bottom:1rem;background:#f9fdf9;border:1.5px solid #00b894;">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" required placeholder="كلمة المرور" style="background:#f9fdf9;margin-bottom:1rem;border:1.5px solid #00b894;">
+                    <button type="submit" style="background:linear-gradient(90deg,#00b894 70%,#00bcd4 100%);font-size:1.15rem;font-weight:bold;margin-bottom:0.7rem;border-radius:10px;">تسجيل الدخول</button>
+                </form>
+                <div style="width:100%;max-width:320px;display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem;">
+                    <a href="#" id="forgotPassLink" style="color:#00bcd4;text-decoration:none;font-weight:600;">هل نسيت كلمة المرور؟</a>
+                    <a href="#" id="signupLink" style="color:#00b894;text-decoration:none;font-weight:600;">إنشاء حساب جديد</a>
+                </div>
+                <div style="width:100%;max-width:320px;text-align:center;margin-top:1.2rem;">
+                    <span style="color:#888;font-size:0.97rem;">من خلال تسجيل الدخول، أنت توافق على <a href="#" style="color:#00bcd4;">سياسة الخصوصية</a> و <a href="#" style="color:#00bcd4;">شروط الاستخدام</a>.</span>
+                </div>
+            </div>
+            <div class="auth-section" id="signupSection" style="display:none;">
+                <h2>إنشاء حساب جديد</h2>
+                <!-- نموذج إنشاء حساب جديد -->
+                <form id="signupForm" autocomplete="off">
+                    <label for="newName">الاسم الكامل</label>
+                    <input type="text" id="newName" required>
+                    <label for="newId">رقم الهوية</label>
+                    <input type="text" id="newId" required>
+                    <label for="newEmail">البريد الإلكتروني</label>
+                    <input type="email" id="newEmail" required>
+                    <label for="newPhone">رقم الهاتف</label>
+                    <input type="tel" id="newPhone" required>
+                    <label for="newPass">كلمة المرور</label>
+                    <input type="password" id="newPass" required>
+                    <button type="submit">تسجيل</button>
+                </form>
+                <div class="auth-links">
+                    <a href="#" id="backToLogin">عودة لتسجيل الدخول</a>
+                </div>
+            </div>
+            <div class="auth-section" id="forgotSection" style="display:none;">
+                <h2>استعادة الحساب</h2>
+                <form id="forgotForm" autocomplete="off">
+                    <label for="forgotId">رقم الهوية أو البريد الإلكتروني</label>
+                    <input type="text" id="forgotId" required>
+                    <button type="submit">استعادة</button>
+                </form>
+                <div class="auth-links">
+                    <a href="#" id="backToLogin2">عودة لتسجيل الدخول</a>
+                </div>
+            </div>
+        </div>
+        <!-- قائمة الخدمات العامة (يجب أن تكون داخل landingPage وليس auth-section) -->
+        <div id="publicServicesSection" style="display:none;margin-top:2rem;">
+            <div class="auth-section">
+                <h2>قائمة الخدمات الحكومية والمدنية</h2>
+                <div id="allServicesList" class="services-grid"></div>
+                <div style="color:#b71c1c;font-size:1.05rem;margin-top:1rem;">
+                    يجب تسجيل الدخول أو إنشاء حساب جديد لاستخدام أي خدمة.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard / Home Page -->
+    <div class="container dashboard" id="dashboardPage">
+        <div class="breadcrumbs" id="dashboardBreadcrumbs">الرئيسية</div>
+        <div class="dashboard-header">
+            <div>
+                <div class="user-summary" id="userSummary">
+                    <!-- بيانات المستخدم تظهر هنا -->
+                </div>
+                <div class="quick-status" id="quickStatus">
+                    <!-- ملخص الطلبات -->
+                </div>
+                <div class="quick-links" id="quickLinks">
+                    <!-- روابط سريعة للخدمات -->
+                </div>
+            </div>
+            <div>
+                <div class="news-section">
+                    <h3>آخر الأخبار والإعلانات</h3>
+                    <div class="news-list" id="newsList">
+                        <div class="news-item">إطلاق خدمة تجديد الجواز إلكترونياً.</div>
+                        <div class="news-item">تنويه: تحديثات أمنية على المنصة يوم 15 يونيو.</div>
+                        <div class="news-item">خدمة استخراج شهادة الميلاد متاحة الآن.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="services-section">
+            <h3>الخدمات السريعة / الأكثر استخداماً</h3>
+            <div class="services-grid" id="quickServices">
+                <!-- خدمات سريعة -->
+            </div>
+        </div>
+        <div class="services-section">
+            <h3>الخدمات حسب القطاعات</h3>
+            <div class="services-grid" id="sectorServices">
+                <!-- خدمات مصنفة -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Detail Page -->
+    <div class="container dashboard" id="serviceDetailPage" style="display:none;">
+        <div class="breadcrumbs" id="serviceBreadcrumbs"></div>
+        <h2 id="serviceTitle"></h2>
+        <p id="serviceDesc"></p>
+        <div>
+            <strong>المستندات المطلوبة:</strong>
+            <ul id="serviceDocs"></ul>
+        </div>
+        <div>
+            <strong>خطوات التنفيذ:</strong>
+            <ol id="serviceSteps"></ol>
+        </div>
+        <div>
+            <button id="applyServiceBtn">تقديم الطلب</button>
+        </div>
+        <div style="margin-top:1rem;">
+            <details>
+                <summary>الأسئلة الشائعة حول الخدمة</summary>
+                <ul id="serviceFAQ">
+                    <li>هل يمكن التقديم من خارج السودان؟ نعم.</li>
+                    <li>ما هي المدة المتوقعة لإنجاز الخدمة؟ من 1 إلى 3 أيام عمل.</li>
+                </ul>
+            </details>
+        </div>
+        <div style="margin-top:0.7rem;">
+            <strong>المدة المتوقعة:</strong> <span id="serviceETA">2 يوم عمل</span>
+        </div>
+    </div>
+
+    <!-- Service Application Form Page -->
+    <div class="container dashboard" id="serviceApplyPage" style="display:none;">
+        <div class="breadcrumbs" id="applyBreadcrumbs"></div>
+        <h2 id="applyServiceTitle"></h2>
+        <form id="serviceAppForm" enctype="multipart/form-data">
+            <div id="serviceAppFields">
+                <!-- حقول الخدمة تظهر ديناميكياً -->
+            </div>
+            <div>
+                <label>رفع المستندات المطلوبة:</label>
+                <input type="file" id="serviceDocsUpload" multiple accept=".pdf,.jpg,.jpeg,.png">
+            </div>
+            <div style="margin:1rem 0;">
+                <progress id="applyProgress" value="1" max="3" style="width:100%;"></progress>
+                <span id="applyStepLabel">الخطوة 1 من 3</span>
+            </div>
+            <button type="button" id="reviewBtn">مراجعة الطلب</button>
+        </form>
+        <div id="reviewSection" style="display:none;">
+            <h3>مراجعة الطلب</h3>
+            <div id="reviewData"></div>
+            <button id="submitAppBtn">إرسال الطلب</button>
+        </div>
+    </div>
+
+    <!-- Track Applications Page -->
+    <div class="container dashboard" id="trackAppsPage" style="display:none;">
+        <div class="breadcrumbs">الرئيسية <span>&gt;</span> طلباتي</div>
+        <h2>متابعة الطلبات</h2>
+        <div id="appsTable">
+            <!-- جدول الطلبات -->
+        </div>
+        <div id="appDetailSection" style="display:none;">
+            <h3>تفاصيل الطلب</h3>
+            <div id="appDetailData"></div>
+            <button id="closeAppDetailBtn" style="margin-top:1rem;">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- Help / Support Center -->
+    <div class="container dashboard" id="helpPage" style="display:none;">
+        <div class="breadcrumbs">الرئيسية <span>&gt;</span> المساعدة</div>
+        <h2>المساعدة والدعم الفني</h2>
+        <div>
+            <h3>الأسئلة الشائعة</h3>
+            <ul>
+                <li>كيف يمكنني إنشاء حساب جديد؟ من صفحة الدخول اضغط "إنشاء حساب جديد".</li>
+                <li>نسيت كلمة المرور، ماذا أفعل؟ استخدم رابط "نسيت كلمة المرور".</li>
+                <li>هل بياناتي آمنة؟ نعم، المنصة تستخدم أحدث تقنيات التشفير والحماية.</li>
+            </ul>
+        </div>
+        <div>
+            <h3>طرق التواصل مع الدعم</h3>
+            <ul>
+                <li>الهاتف: 1234-567-800</li>
+                <li>البريد الإلكتروني: support@yusr.gov.sd</li>
+            </ul>
+            <form id="supportForm">
+                <label>استفسار أو شكوى:</label>
+                <textarea rows="3" style="width:100%;" required></textarea>
+                <button type="submit">إرسال</button>
+            </form>
+        </div>
+        <div>
+            <h3>الشكاوى والاقتراحات</h3>
+            <form id="suggestForm">
+                <label>ملاحظتك:</label>
+                <textarea rows="2" style="width:100%;" required></textarea>
+                <button type="submit">إرسال</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Profile / Settings -->
+    <div class="container dashboard" id="profilePage" style="display:none;">
+        <div class="breadcrumbs">الرئيسية <span>&gt;</span> ملفي الشخصي</div>
+        <h2>ملفي الشخصي</h2>
+        <form id="profileForm">
+            <label>الاسم الكامل</label>
+            <input type="text" id="profileName">
+            <label>رقم الهوية</label>
+            <input type="text" id="profileId" disabled>
+            <label>البريد الإلكتروني</label>
+            <input type="email" id="profileEmail">
+            <label>رقم الهاتف</label>
+            <input type="tel" id="profilePhone">
+            <button type="submit">حفظ التعديلات</button>
+        </form>
+        <div>
+            <h3>إعدادات الأمان</h3>
+            <button id="changePassBtn">تغيير كلمة المرور</button>
+            <label>
+                <input type="checkbox" id="enable2FA"> تفعيل التحقق الثنائي (OTP)
+            </label>
+        </div>
+        <div>
+            <h3>إعدادات الإشعارات</h3>
+            <label>
+                <input type="checkbox" id="notifEmail" checked> بريد إلكتروني
+            </label>
+            <label>
+                <input type="checkbox" id="notifSMS"> رسائل نصية
+            </label>
+            <label>
+                <input type="checkbox" id="notifApp" checked> إشعارات داخل التطبيق
+            </label>
+        </div>
+        <div>
+            <h3>سجل النشاطات</h3>
+            <ul id="activityLog">
+                <li>تسجيل الدخول الأخير: 2024-06-10 09:12</li>
+                <li>تقديم طلب تجديد جواز.</li>
+            </ul>
+        </div>
+        <button id="logoutBtn" style="background:#b71c1c;color:#fff;margin-top:1rem;">تسجيل الخروج</button>
+    </div>
+
+    <!-- نافذة منبثقة لنجاح إنشاء الحساب -->
+    <div id="signupSuccessModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.25);align-items:center;justify-content:center;">
+        <div style="background:#fff;padding:2rem 1.5rem 1.2rem 1.5rem;border-radius:12px;max-width:350px;box-shadow:0 2px 16px rgba(0,0,0,0.13);position:relative;">
+            <span id="closeSignupModal" style="position:absolute;top:10px;left:10px;cursor:pointer;font-size:1.3rem;color:#b71c1c;font-weight:bold;">&times;</span>
+            <h3 style="color:#00695c;margin-top:0;">تم إنشاء الحساب بنجاح</h3>
+            <div id="signupSuccessMsg" style="margin:1rem 0 0.5rem 0;font-size:1.08rem;"></div>
+            <div style="color:#888;font-size:0.97rem;margin-top:0.7rem;">يرجى الاحتفاظ بهذه البيانات للرجوع إليها لاحقاً.</div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المستخدمين (محاكاة ملف بيانات المستخدمين)
+        const usersDB = [
+            {
+                id: "123456789",
+                name: "غسان خالد محمد أحمد",
+                email: "ghassan@yusr.gov.sd",
+                phone: "0912345678",
+                password: "yusr2024",
+                twoFA: false,
+                apps: [],
+                activity: ["تسجيل الدخول الأخير: 2024-06-10 09:12"]
+            }
+        ];
+
+        // بيانات الخدمات (محاكاة)
+        const services = [
+            {
+                id: "passport-renew",
+                title: "تجديد جواز السفر",
+                desc: "خدمة إلكترونية لتجديد جواز السفر السوداني للمواطنين داخل وخارج السودان.",
+                docs: ["صورة الجواز القديم (PDF, JPG, PNG)", "صورة شخصية حديثة", "إيصال سداد الرسوم"],
+                steps: ["تعبئة النموذج الإلكتروني", "رفع المستندات المطلوبة", "دفع الرسوم", "انتظار الموافقة والاستلام"],
+                fields: [
+                    {label: "رقم الجواز", type: "text", id: "passportNum", required: true},
+                    {label: "مكان الإصدار", type: "text", id: "issuePlace", required: true}
+                ],
+                eta: "2 يوم عمل"
+            },
+            {
+                id: "id-renew",
+                title: "تجديد بطاقة الهوية",
+                desc: "خدمة تجديد بطاقة الهوية الوطنية إلكترونياً.",
+                docs: ["صورة البطاقة القديمة", "صورة شخصية", "إيصال سداد الرسوم"],
+                steps: ["تعبئة البيانات", "رفع المستندات", "دفع الرسوم", "انتظار الموافقة"],
+                fields: [
+                    {label: "رقم البطاقة", type: "text", id: "idNum", required: true}
+                ],
+                eta: "1 يوم عمل"
+            }
+        ];
+
+        // بيانات القطاعات
+        const sectors = [
+            {name: "الداخلية", services: ["passport-renew", "id-renew"]},
+            {name: "الصحة", services: []},
+            {name: "التعليم", services: []},
+            {name: "المالية", services: []},
+            {name: "القضاء", services: []},
+            {name: "العدل", services: []},
+            {name: "الشرطة", services: []},
+            {name: "السجل المدني", services: []}
+        ];
+
+        // حالة المستخدم الحالي
+        let currentUser = null;
+
+        // عناصر DOM
+        const landingPage = document.getElementById('landingPage');
+        const dashboardPage = document.getElementById('dashboardPage');
+        const serviceDetailPage = document.getElementById('serviceDetailPage');
+        const serviceApplyPage = document.getElementById('serviceApplyPage');
+        const trackAppsPage = document.getElementById('trackAppsPage');
+        const helpPage = document.getElementById('helpPage');
+        const profilePage = document.getElementById('profilePage');
+        const userAvatar = document.getElementById('userAvatar');
+        const mainNav = document.getElementById('mainNav');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+        // تنقل الصفحات
+        function showPage(page) {
+            [landingPage, dashboardPage, serviceDetailPage, serviceApplyPage, trackAppsPage, helpPage, profilePage].forEach(p => p.style.display = 'none');
+            if (page === dashboardPage) dashboardPage.classList.add('active');
+            else dashboardPage.classList.remove('active');
+            page.style.display = 'block';
+        }
+
+        // إظهار لوحة التحكم بعد تسجيل الدخول
+        function showDashboard() {
+            showPage(dashboardPage);
+            fillUserSummary();
+            fillQuickStatus();
+            fillQuickLinks();
+            fillQuickServices();
+            fillSectorServices();
+        }
+
+        // تعبئة بيانات المستخدم
+        function fillUserSummary() {
+            if (!currentUser) return;
+            document.getElementById('userSummary').innerHTML = `
+                <div><b>الاسم:</b> ${currentUser.name}</div>
+                <div><b>رقم الهوية:</b> ${currentUser.id}</div>
+                <div><b>الحالة:</b> نشط</div>
+            `;
+        }
+
+        // ملخص الطلبات
+        function fillQuickStatus() {
+            if (!currentUser) return;
+            let apps = currentUser.apps || [];
+            let pending = apps.filter(a => a.status === 'قيد المعالجة').length;
+            let done = apps.filter(a => a.status === 'تمت الموافقة').length;
+            let rejected = apps.filter(a => a.status === 'مرفوض').length;
+            document.getElementById('quickStatus').innerHTML = `
+                <div class="status-card"><div>قيد المعالجة</div><div><b>${pending}</b></div></div>
+                <div class="status-card"><div>منتهية</div><div><b>${done}</b></div></div>
+                <div class="status-card"><div>مرفوضة</div><div><b>${rejected}</b></div></div>
+            `;
+        }
+
+        // روابط سريعة
+        function fillQuickLinks() {
+            document.getElementById('quickLinks').innerHTML = `
+                <div class="quick-link" onclick="showTrackApps()">متابعة الطلبات</div>
+                <div class="quick-link" onclick="showProfile()">ملفي الشخصي</div>
+                <div class="quick-link" onclick="showHelp()">الدعم الفني</div>
+            `;
+        }
+
+        // الخدمات السريعة
+        function fillQuickServices() {
+            let html = '';
+            services.forEach(s => {
+                html += `<div class="service-card" onclick="showServiceDetail('${s.id}')">${s.title}</div>`;
+            });
+            document.getElementById('quickServices').innerHTML = html;
+        }
+
+        // الخدمات حسب القطاعات
+        function fillSectorServices() {
+            let html = '';
+            sectors.forEach(sec => {
+                html += `<div class="service-card" onclick="showSector('${sec.name}')">${sec.name}</div>`;
+            });
+            document.getElementById('sectorServices').innerHTML = html;
+        }
+
+        // تفاصيل الخدمة
+        window.showServiceDetail = function(serviceId) {
+            let s = services.find(x => x.id === serviceId);
+            if (!s) return;
+            showPage(serviceDetailPage);
+            document.getElementById('serviceBreadcrumbs').innerHTML = `الرئيسية <span>&gt;</span> الخدمات <span>&gt;</span> ${s.title}`;
+            document.getElementById('serviceTitle').textContent = s.title;
+            document.getElementById('serviceDesc').textContent = s.desc;
+            document.getElementById('serviceDocs').innerHTML = s.docs.map(d => `<li>${d}</li>`).join('');
+            document.getElementById('serviceSteps').innerHTML = s.steps.map(st => `<li>${st}</li>`).join('');
+            document.getElementById('serviceETA').textContent = s.eta;
+            document.getElementById('applyServiceBtn').onclick = () => showServiceApply(s.id);
+        };
+
+        // صفحة التقديم للخدمة
+        function showServiceApply(serviceId) {
+            let s = services.find(x => x.id === serviceId);
+            if (!s) return;
+            showPage(serviceApplyPage);
+            document.getElementById('applyBreadcrumbs').innerHTML = `الرئيسية <span>&gt;</span> الخدمات <span>&gt;</span> ${s.title} <span>&gt;</span> تقديم الطلب`;
+            document.getElementById('applyServiceTitle').textContent = `تقديم طلب: ${s.title}`;
+            let fieldsHtml = '';
+            s.fields.forEach(f => {
+                fieldsHtml += `<label>${f.label}</label><input type="${f.type}" id="app_${f.id}" ${f.required ? 'required' : ''}>`;
+            });
+            document.getElementById('serviceAppFields').innerHTML = fieldsHtml;
+            document.getElementById('reviewSection').style.display = 'none';
+            document.getElementById('serviceAppForm').style.display = 'block';
+            document.getElementById('applyProgress').value = 1;
+            document.getElementById('applyStepLabel').textContent = 'الخطوة 1 من 3';
+            document.getElementById('reviewBtn').onclick = function() {
+                // مراجعة الطلب
+                let reviewHtml = '';
+                s.fields.forEach(f => {
+                    let val = document.getElementById('app_' + f.id).value;
+                    reviewHtml += `<div><b>${f.label}:</b> ${val}</div>`;
+                });
+                let files = document.getElementById('serviceDocsUpload').files;
+                reviewHtml += `<div><b>عدد المستندات المرفوعة:</b> ${files.length}</div>`;
+                document.getElementById('reviewData').innerHTML = reviewHtml;
+                document.getElementById('reviewSection').style.display = 'block';
+                document.getElementById('serviceAppForm').style.display = 'none';
+                document.getElementById('applyProgress').value = 2;
+                document.getElementById('applyStepLabel').textContent = 'الخطوة 2 من 3';
+            };
+            document.getElementById('submitAppBtn').onclick = function() {
+                // التحقق الثنائي (محاكاة)
+                let otp = prompt("أدخل رمز التحقق (OTP) المرسل إلى هاتفك:");
+                if (otp === "1234") {
+                    // حفظ الطلب
+                    if (!currentUser.apps) currentUser.apps = [];
+                    currentUser.apps.push({
+                        id: Math.floor(Math.random()*1000000),
+                        service: s.title,
+                        date: new Date().toLocaleDateString(),
+                        status: "قيد المعالجة",
+                        lastUpdate: new Date().toLocaleDateString()
+                    });
+                    alert("تم إرسال الطلب بنجاح!");
+                    showDashboard();
+                } else {
+                    alert("رمز التحقق غير صحيح.");
+                }
+            };
+        }
+
+        // نموذج صفحة الطلبات (متابعة الطلبات)
+        window.showTrackApps = function() {
+            showPage(trackAppsPage);
+            document.getElementById('appDetailSection').style.display = 'none';
+            let html = '';
+            if (!currentUser || !currentUser.apps || currentUser.apps.length === 0) {
+                html = '<div style="color:#b71c1c;font-size:1.1rem;padding:1.5rem 0;text-align:center;">لا توجد طلبات حتى الآن.</div>';
+            } else {
+                html = '<table style="width:100%;border-collapse:collapse;"><tr style="background:#e0f2f1;"><th>اسم الخدمة</th><th>رقم الطلب</th><th>تاريخ التقديم</th><th>الحالة</th><th>آخر تحديث</th><th>تفاصيل</th></tr>';
+                currentUser.apps.forEach((a, i) => {
+                    html += `<tr style="border-bottom:1px solid #eee;">
+                        <td>${a.service}</td>
+                        <td>${a.id}</td>
+                        <td>${a.date}</td>
+                        <td>${a.status}</td>
+                        <td>${a.lastUpdate}</td>
+                        <td><button onclick="showAppDetail(${i})">عرض التفاصيل</button></td>
+                    </tr>`;
+                });
+                html += '</table>';
+            }
+            document.getElementById('appsTable').innerHTML = html;
+        };
+
+        // تفاصيل الطلب في صفحة المتابعة
+        window.showAppDetail = function(index) {
+            let app = currentUser.apps[index];
+            if (!app) return;
+            document.getElementById('appDetailData').innerHTML = `
+                <div><b>اسم الخدمة:</b> ${app.service}</div>
+                <div><b>رقم الطلب:</b> ${app.id}</div>
+                <div><b>تاريخ التقديم:</b> ${app.date}</div>
+                <div><b>الحالة:</b> ${app.status}</div>
+                <div><b>آخر تحديث:</b> ${app.lastUpdate}</div>
+                <div style="margin-top:0.7rem;color:#888;">(تفاصيل إضافية أو سجل التحديثات يمكن إضافتها هنا)</div>
+            `;
+            document.getElementById('appDetailSection').style.display = 'block';
+        };
+
+        // زر إغلاق تفاصيل الطلب
+        document.getElementById('closeAppDetailBtn').onclick = function() {
+            document.getElementById('appDetailSection').style.display = 'none';
+        };
+
+        // تسجيل دخول (دعم API ومحلي)
+        document.getElementById('loginForm').onsubmit = async function(e) {
+            e.preventDefault();
+            let username = document.getElementById('username').value.trim();
+            let password = document.getElementById('password').value;
+            if (typeof API_URL !== "undefined") {
+                let res = await fetch(API_URL + "/login", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({username, password})
+                });
+                let data = await res.json();
+                if (data.success) {
+                    currentUser = data.user;
+                    // حفظ بيانات المستخدم في localStorage (تذكر العميل)
+                    localStorage.setItem('yusr_user_id', currentUser.id);
+                    localStorage.setItem('yusr_user_name', currentUser.name);
+                    userAvatar.textContent = currentUser.name.split(' ')[0];
+                    if (typeof fetchServicesAndSectors === "function") await fetchServicesAndSectors();
+                    showDashboard();
+                    hidePublicServicesSection();
+                } else {
+                    alert(data.msg || "بيانات الدخول غير صحيحة.");
+                }
+            } else {
+                // دعم الوضع المحلي
+                let user = usersDB.find(u => (u.id === username || u.email === username) && u.password === password);
+                if (user) {
+                    currentUser = user;
+                    // حفظ بيانات المستخدم في localStorage (تذكر العميل)
+                    localStorage.setItem('yusr_user_id', user.id);
+                    localStorage.setItem('yusr_user_name', user.name);
+                    userAvatar.textContent = user.name.split(' ')[0];
+                    showDashboard();
+                    hidePublicServicesSection();
+                } else {
+                    alert("بيانات الدخول غير صحيحة.");
+                }
+            }
+        };
+
+        // تسجيل جديد (دعم API ومحلي + منع تكرار المستخدم)
+        document.getElementById('signupForm').onsubmit = async function(e) {
+            e.preventDefault();
+            let newUser = {
+                id: document.getElementById('newId').value,
+                name: document.getElementById('newName').value,
+                email: document.getElementById('newEmail').value,
+                phone: document.getElementById('newPhone').value,
+                password: document.getElementById('newPass').value
+            };
+            if (typeof API_URL !== "undefined") {
+                let res = await fetch(API_URL + "/signup", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(newUser)
+                });
+                let data = await res.json();
+                if (data.success) {
+                    // تذكر العميل الجديد مباشرة بعد التسجيل
+                    localStorage.setItem('yusr_user_id', newUser.id);
+                    localStorage.setItem('yusr_user_name', newUser.name);
+                    alert("تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.");
+                    document.getElementById('loginSection').style.display = 'block';
+                    document.getElementById('signupSection').style.display = 'none';
+                    hidePublicServicesSection();
+                } else {
+                    alert(data.msg || "خطأ في إنشاء الحساب.");
+                }
+            } else {
+                // تحقق من عدم تكرار المستخدم
+                if (usersDB.some(u => u.id === newUser.id || u.email === newUser.email)) {
+                    alert("المستخدم موجود مسبقاً.");
+                    return;
+                }
+                usersDB.push(newUser);
+                // تذكر العميل الجديد مباشرة بعد التسجيل
+                localStorage.setItem('yusr_user_id', newUser.id);
+                localStorage.setItem('yusr_user_name', newUser.name);
+                alert("تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.");
+                document.getElementById('loginSection').style.display = 'block';
+                document.getElementById('signupSection').style.display = 'none';
+                hidePublicServicesSection();
+            }
+        };
+
+        // زر تسجيل الخروج: إزالة بيانات العميل من localStorage
+        document.getElementById('logoutBtn').onclick = function() {
+            localStorage.removeItem('yusr_user_id');
+            localStorage.removeItem('yusr_user_name');
+            currentUser = null;
+            userAvatar.textContent = "دخـول";
+            showPage(landingPage);
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('signupSection').style.display = 'none';
+            document.getElementById('forgotSection').style.display = 'none';
+            document.getElementById('publicServicesSection').style.display = 'none';
+        };
+
+        // عند بدء التشغيل، استرجع المستخدم من localStorage إذا كان موجوداً
+        window.onload = function() {
+            let savedId = localStorage.getItem('yusr_user_id');
+            let savedName = localStorage.getItem('yusr_user_name');
+            // تحقق أن عنصر userAvatar موجود قبل محاولة استخدامه
+            const userAvatarElem = document.getElementById('userAvatar');
+            if (savedId) {
+                // ابحث عن المستخدم في usersDB (محاكاة محلية)
+                let user = usersDB.find(u => u.id === savedId);
+                if (user) {
+                    currentUser = user;
+                    if (userAvatarElem) {
+                        userAvatarElem.textContent = savedName ? savedName.split(' ')[0] : user.name.split(' ')[0];
+                    }
+                    showDashboard();
+                    return;
+                }
+            }
+            // إذا لم يوجد مستخدم مسجل دخول، أظهر صفحة الهبوط
+            showPage(landingPage);
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('signupSection').style.display = 'none';
+            document.getElementById('forgotSection').style.display = 'none';
+            document.getElementById('publicServicesSection').style.display = 'none';
+        };
+
+        // إصلاح التنقل بين القوائم بحيث تظهر النماذج/الصفحات بشكل صحيح
+
+        // الرئيسية (Dashboard)
+        document.getElementById('homeNav').onclick = function(e) {
+            e.preventDefault();
+            if (currentUser) {
+                showDashboard();
+            } else {
+                showPage(landingPage);
+                document.getElementById('loginSection').style.display = 'block';
+                document.getElementById('signupSection').style.display = 'none';
+                document.getElementById('forgotSection').style.display = 'none';
+                document.getElementById('publicServicesSection').style.display = 'none';
+            }
+        };
+
+        // الخدمات (قائمة عامة فقط إذا لم يسجل دخول)
+        document.getElementById('servicesNav').onclick = function(e) {
+            e.preventDefault();
+            if (currentUser) {
+                showDashboard();
+                // Scroll to quickServices section
+                setTimeout(() => {
+                    document.getElementById('quickServices').scrollIntoView({behavior: "smooth"});
+                }, 100);
+            } else {
+                showPage(landingPage);
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('signupSection').style.display = 'none';
+                document.getElementById('forgotSection').style.display = 'none';
+                document.getElementById('publicServicesSection').style.display = 'block';
+                renderAllServicesList();
+            }
+        };
+
+        // طلباتي (متابعة الطلبات)
+        document.getElementById('myAppsNav').onclick = function(e) {
+            e.preventDefault();
+            if (currentUser) {
+                showTrackApps();
+            } else {
+                showPage(landingPage);
+                document.getElementById('loginSection').style.display = 'block';
+                document.getElementById('signupSection').style.display = 'none';
+                document.getElementById('forgotSection').style.display = 'none';
+                document.getElementById('publicServicesSection').style.display = 'none';
+            }
+        };
+
+        // المساعدة (الدعم الفني)
+        document.getElementById('helpNav').onclick = function(e) {
+            e.preventDefault();
+            showHelp();
+            // إخفاء كل أقسام النماذج في صفحة الهبوط
+            if (!currentUser) {
+                showPage(landingPage);
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('signupSection').style.display = 'none';
+                document.getElementById('forgotSection').style.display = 'none';
+                document.getElementById('publicServicesSection').style.display = 'none';
+                showPage(helpPage);
+            }
+        };
+
+        // زر "إنشاء حساب جديد"
+        document.getElementById('signupLink').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('signupSection').style.display = 'block';
+            document.getElementById('forgotSection').style.display = 'none';
+            document.getElementById('publicServicesSection').style.display = 'none';
+        };
+
+        // زر "نسيت كلمة المرور؟"
+        document.getElementById('forgotPassLink').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('signupSection').style.display = 'none';
+            document.getElementById('forgotSection').style.display = 'block';
+            document.getElementById('publicServicesSection').style.display = 'none';
+        };
+
+        // زر العودة لتسجيل الدخول من صفحة التسجيل
+        document.getElementById('backToLogin').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('signupSection').style.display = 'none';
+            document.getElementById('forgotSection').style.display = 'none';
+            document.getElementById('publicServicesSection').style.display = 'none';
+        };
+
+        // زر العودة لتسجيل الدخول من صفحة الاستعادة
+        document.getElementById('backToLogin2').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('signupSection').style.display = 'none';
+            document.getElementById('forgotSection').style.display = 'none';
+            document.getElementById('publicServicesSection').style.display = 'none';
+        };
+
+        // نصوص الواجهة باللغتين
+        const LANGS = {
+            ar: {
+                title: "يسر - البوابة الحكومية السودانية الموحدة",
+                login: "تسجيل الدخول",
+                signup: "إنشاء حساب جديد",
+                forgot: "استعادة الحساب",
+                username: "اسم المستخدم أو رقم الهوية",
+                password: "كلمة المرور",
+                loginBtn: "دخول",
+                forgotLink: "نسيت كلمة المرور؟",
+                signupLink: "إنشاء حساب جديد",
+                backToLogin: "عودة لتسجيل الدخول",
+                newName: "الاسم الكامل",
+                newId: "رقم الهوية",
+                newEmail: "البريد الإلكتروني",
+                newPhone: "رقم الهاتف",
+                newPass: "كلمة المرور",
+                signupBtn: "تسجيل",
+                forgotId: "رقم الهوية أو البريد الإلكتروني",
+                forgotBtn: "استعادة",
+                welcome: "بوابتك الموحدة للخدمات الحكومية في السودان",
+                welcomeDesc: "منصة <b>يسر</b> تجمع لك كل الخدمات الحكومية السودانية في مكان واحد، لتسهيل وصولك للخدمات الرقمية بأمان وسرعة وجودة عالية.<br>للمواطنين، المقيمين، الزوار، والشركات.",
+                signupSuccess: "تم إنشاء الحساب بنجاح",
+                signupSuccessNote: "يرجى الاحتفاظ بهذه البيانات للرجوع إليها لاحقاً.",
+                idLabel: "رقم الهوية",
+                phoneLabel: "رقم الجوال",
+                home: "الرئيسية",
+                services: "الخدمات",
+                myApps: "طلباتي",
+                help: "المساعدة",
+                profile: "ملفي الشخصي",
+                logout: "تسجيل الخروج"
+            },
+            en: {
+                title: "Yusr - Sudan Unified Government Portal",
+                login: "Login",
+                signup: "Create New Account",
+                forgot: "Account Recovery",
+                username: "Username or National ID",
+                password: "Password",
+                loginBtn: "Login",
+                forgotLink: "Forgot password?",
+                signupLink: "Create New Account",
+                backToLogin: "Back to Login",
+                newName: "Full Name",
+                newId: "National ID",
+                newEmail: "Email",
+                newPhone: "Phone Number",
+                newPass: "Password",
+                signupBtn: "Register",
+                forgotId: "National ID or Email",
+                forgotBtn: "Recover",
+                welcome: "Your unified gateway to government services in Sudan",
+                welcomeDesc: "<b>Yusr</b> brings all Sudanese government services in one place, making your access to digital services secure, fast, and high quality.<br>For citizens, residents, visitors, and businesses.",
+                signupSuccess: "Account Created Successfully",
+                signupSuccessNote: "Please keep this information for future reference.",
+                idLabel: "National ID",
+                phoneLabel: "Phone Number",
+                home: "Home",
+                services: "Services",
+                myApps: "My Applications",
+                help: "Help",
+                profile: "My Profile",
+                logout: "Logout"
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.title = LANGS[lang].title;
+            // عناوين النماذج
+            document.querySelector('#loginSection h2').textContent = LANGS[lang].login;
+            document.querySelector('#loginForm label[for="username"]').textContent = LANGS[lang].username;
+            document.querySelector('#loginForm label[for="password"]').textContent = LANGS[lang].password;
+            document.querySelector('#loginForm button').textContent = LANGS[lang].loginBtn;
+            document.getElementById('forgotPassLink').textContent = LANGS[lang].forgotLink;
+            document.getElementById('signupLink').textContent = LANGS[lang].signupLink;
+            document.querySelector('#signupSection h2').textContent = LANGS[lang].signup;
+            document.querySelector('#signupForm label[for="newName"]').textContent = LANGS[lang].newName;
+            document.querySelector('#signupForm label[for="newId"]').textContent = LANGS[lang].newId;
+            document.querySelector('#signupForm label[for="newEmail"]').textContent = LANGS[lang].newEmail;
+            document.querySelector('#signupForm label[for="newPhone"]').textContent = LANGS[lang].newPhone;
+            document.querySelector('#signupForm label[for="newPass"]').textContent = LANGS[lang].newPass;
+            document.querySelector('#signupForm button').textContent = LANGS[lang].signupBtn;
+            document.getElementById('backToLogin').textContent = LANGS[lang].backToLogin;
+            document.querySelector('#forgotSection h2').textContent = LANGS[lang].forgot;
+            document.querySelector('#forgotForm label[for="forgotId"]').textContent = LANGS[lang].forgotId;
+            document.querySelector('#forgotForm button').textContent = LANGS[lang].forgotBtn;
+            document.getElementById('backToLogin2').textContent = LANGS[lang].backToLogin;
+            document.querySelector('.welcome-section h1').textContent = LANGS[lang].welcome;
+            document.querySelector('.welcome-section p').innerHTML = LANGS[lang].welcomeDesc;
+            document.getElementById('signupSuccessModal').querySelector('h3').textContent = LANGS[lang].signupSuccess;
+            document.getElementById('signupSuccessModal').querySelector('div[style*="color:#888"]').textContent = LANGS[lang].signupSuccessNote;
+            // شريط التنقل
+            document.getElementById('homeNav').textContent = LANGS[lang].home;
+            document.getElementById('servicesNav').textContent = LANGS[lang].services;
+            document.getElementById('myAppsNav').textContent = LANGS[lang].myApps;
+            document.getElementById('helpNav').textContent = LANGS[lang].help;
+            // زر اللغة
+            document.getElementById('langSwitch').textContent = lang === 'ar' ? 'EN' : 'عربي';
+            // اتجاه الصفحة
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        }
+
+        document.getElementById('langSwitch').onclick = function() {
+            setLang(currentLang === 'ar' ? 'en' : 'ar');
+        };
+
+        // عند بدء التشغيل، ضبط اللغة الافتراضية
+        window.addEventListener('DOMContentLoaded', function() {
+            setLang(currentLang);
+        });
+
+        // إصلاح مشكلة ظهور صفحة تسجيل الدخول بدلاً من صفحة الطلبات عند الضغط على "طلباتي"
+        // السبب: currentUser = null (أي لم يتم تسجيل الدخول أو لم يتم استرجاع المستخدم من localStorage عند إعادة تحميل الصفحة)
+
+        // عند بدء التشغيل، استرجع المستخدم من localStorage إذا كان موجوداً
+        window.onload = function() {
+            let savedId = localStorage.getItem('yusr_user_id');
+            let savedName = localStorage.getItem('yusr_user_name');
+            // تحقق أن عنصر userAvatar موجود قبل محاولة استخدامه
+            const userAvatarElem = document.getElementById('userAvatar');
+            if (savedId) {
+                // ابحث عن المستخدم في usersDB (محاكاة محلية)
+                let user = usersDB.find(u => u.id === savedId);
+                if (user) {
+                    currentUser = user;
+                    if (userAvatarElem) {
+                        userAvatarElem.textContent = savedName ? savedName.split(' ')[0] : user.name.split(' ')[0];
+                    }
+                    showDashboard();
+                    return;
+                }
+            }
+            // إذا لم يوجد مستخدم مسجل دخول، أظهر صفحة الهبوط
+            showPage(landingPage);
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('signupSection').style.display = 'none';
+            document.getElementById('forgotSection').style.display = 'none';
+            document.getElementById('publicServicesSection').style.display = 'none';
+        };
+
+        // زر إظهار/إخفاء كلمة المرور في نموذج تسجيل الدخول
+        // document.getElementById('togglePass').onclick = function(e) {
+        //     e.preventDefault();
+        //     const passInput = document.getElementById('password');
+        //     const eyeIcon = document.getElementById('eyeIcon');
+        //     if (passInput.type === "password") {
+        //         passInput.type = "text";
+        //         eyeIcon.textContent = "🙈";
+        //     } else {
+        //         passInput.type = "password";
+        //         eyeIcon.textContent = "👁️";
+        //     }
+        // };
+
+        // زر إظهار/إخفاء كلمة المرور في نموذج إنشاء الحساب
+        // document.getElementById('toggleNewPass').onclick = function(e) {
+        //     e.preventDefault();
+        //     const passInput = document.getElementById('newPass');
+        //     const eyeIcon = document.getElementById('eyeIconNew');
+        //     if (passInput.type === "password") {
+        //         passInput.type = "text";
+        //         eyeIcon.textContent = "🙈";
+        //     } else {
+        //         passInput.type = "password";
+        //         eyeIcon.textContent = "👁️";
+        //     }
+        // };
+    </script>
+</body>
+</html>
